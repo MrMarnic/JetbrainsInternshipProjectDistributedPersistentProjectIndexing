@@ -1,7 +1,6 @@
 package org.example;
 
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
@@ -27,12 +26,10 @@ public class App
         String program = args[0];
 
         ProjectLexer projectLexer = new ProjectLexer(CharStreams.fromString(program));
-
         CommonTokenStream stream = new CommonTokenStream(projectLexer);
         stream.fill();
 
         ProjectParser parser = new ProjectParser(stream);
-
         ParseTree tree = parser.document();
 
         ProjectScopeListener listener = new ProjectScopeListener();
